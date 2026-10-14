@@ -12,4 +12,4 @@ c:I[68027,["/_next/static/chunks/3fntmmi971322.js"],"default",1]
 9:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 d:I[27201,["/_next/static/chunks/3fntmmi971322.js"],"IconMark"]
 6:null
-b:[["$","link","0",{"rel":"icon","href":"/favicon.ico?favicon.2h7y26i0wurx4.ico","sizes":"48x48","type":"image/x-icon"}],["$","$Ld","1",{}]]
+b:[["$","link","0",{"rel":"icon","href":"/favicon.ico?favicon.3jpmczgxqblx3.ico","sizes":"48x48","type":"image/x-icon"}],["$","$Ld","1",{}]]
