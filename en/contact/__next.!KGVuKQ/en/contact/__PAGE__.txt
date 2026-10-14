@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
-2:I[49005,["/_next/static/chunks/3ejr958rpkpq8.js","/_next/static/chunks/1lici3t6ughnz.js","/_next/static/chunks/0_ihplm4elnxm.js","/_next/static/chunks/22i-nz-nd3y6-.js"],"Reveal"]
-3:I[9002,["/_next/static/chunks/3ejr958rpkpq8.js","/_next/static/chunks/1lici3t6ughnz.js","/_next/static/chunks/0_ihplm4elnxm.js","/_next/static/chunks/22i-nz-nd3y6-.js"],"WordsReveal"]
-4:I[14219,["/_next/static/chunks/3ejr958rpkpq8.js","/_next/static/chunks/1lici3t6ughnz.js","/_next/static/chunks/0_ihplm4elnxm.js","/_next/static/chunks/22i-nz-nd3y6-.js"],"ContactForm"]
+2:I[49005,["/_next/static/chunks/3ejr958rpkpq8.js","/_next/static/chunks/1lici3t6ughnz.js","/_next/static/chunks/3vzcgxd9kg9kf.js","/_next/static/chunks/22i-nz-nd3y6-.js"],"Reveal"]
+3:I[9002,["/_next/static/chunks/3ejr958rpkpq8.js","/_next/static/chunks/1lici3t6ughnz.js","/_next/static/chunks/3vzcgxd9kg9kf.js","/_next/static/chunks/22i-nz-nd3y6-.js"],"WordsReveal"]
+4:I[14219,["/_next/static/chunks/3ejr958rpkpq8.js","/_next/static/chunks/1lici3t6ughnz.js","/_next/static/chunks/3vzcgxd9kg9kf.js","/_next/static/chunks/22i-nz-nd3y6-.js"],"ContactForm"]
 b:X
 10:X
 10:C
