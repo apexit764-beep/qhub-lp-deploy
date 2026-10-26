@@ -32,7 +32,7 @@
     var inTpl = null;
     var aiTpl = null;
     groups.forEach(function (g) {
-      var bubble = g.querySelector("div[class*='max-w-']");
+      var bubble = g.querySelector("div[class*='rounded-2xl']");
       if (!bubble) return;
       if (bubble.className.indexOf("violet") > -1) aiTpl = aiTpl || g;
       else inTpl = inTpl || g;
@@ -54,14 +54,20 @@
       return wrap;
     }
 
-    /** ينسخ مجموعة رسائل ويستبدل نصّها وسطر توقيعها. */
+    /**
+     * ينسخ مجموعة رسائل ويستبدل نصّها وسطر توقيعها. ترتيب السطر يختلف بين
+     * رسالة العميل (الاسم ثم الوقت) ورسالة المساعد (الوقت ثم الأيقونة ثم
+     * الاسم)، فيُعرف الوقت بصنفه tabular-nums لا بموضعه.
+     */
     function message(tpl, text, who, when) {
       var g = tpl.cloneNode(true);
       var p = g.querySelector("p");
       if (p) p.textContent = text;
       var meta = g.querySelectorAll("div[class*='text-[10px]'] span");
-      if (meta[0]) meta[0].textContent = who;
-      if (meta[1]) meta[1].textContent = "· " + when;
+      Array.prototype.forEach.call(meta, function (span) {
+        if (span.className.indexOf("tabular-nums") > -1) span.textContent = (span.textContent.indexOf("·") > -1 ? "· " : "") + when;
+        else span.textContent = who;
+      });
       return push(g);
     }
 
@@ -112,6 +118,12 @@
       var texts = row.querySelectorAll("p");
       if (texts[0]) texts[0].textContent = name;
       if (texts[1]) texts[1].textContent = preview;
+      // شارة «AI» ووسم الوقت تخصّ المحادثة المنسوخة، لا الواصلة للتوّ
+      Array.prototype.forEach.call(row.querySelectorAll("span[title]"), function (s) {
+        if (s.className.indexOf("violet") > -1) s.parentElement.removeChild(s);
+      });
+      var time = row.querySelector("span[class*='text-[10px]']");
+      if (time) time.textContent = "الآن";
 
       var badge = document.createElement("span");
       badge.textContent = "1";
@@ -139,12 +151,11 @@
       أثنائه محادثتان جديدتان — فيُقرأ الصندوق مشغولاً لا ساكناً.
     */
     var scene = [
-      [1200, function () { var t = typing(inTpl); setTimeout(function () { if (t.parentElement) t.parentElement.removeChild(t); }, 1600); }],
-      [1800, function () { message(inTpl, "مساء الخير، هل الشحن متاح لصلالة؟", "منى الحارثية", "الآن"); }],
-      [900, function () { var t = typing(aiTpl); setTimeout(function () { if (t.parentElement) t.parentElement.removeChild(t); }, 1500); }],
-      [1700, function () { message(aiTpl, "نعم، الشحن متاح لصلالة ويصل خلال يومين عمل 🚚", "المساعد الذكي", "ردّ خلال 1.8 ث"); }],
+      [1000, function () { var t = typing(aiTpl); setTimeout(function () { if (t.parentElement) t.parentElement.removeChild(t); }, 1500); }],
+      [1700, function () { message(aiTpl, "من «الحسابات والربط» اختر واتساب واضغط «ربط حساب جديد»، وتصلك رسائل الرقم هنا مباشرة.", "المساعد الذكي", "الآن"); }],
       [1400, function () { arrival("خالد الحارثي", "متى يفتح المحل اليوم؟", "خا"); }],
-      [1500, function () { message(inTpl, "وهل أقدر أقسّم الفاتورة على فرعين؟", "منى الحارثية", "الآن"); }],
+      [1300, function () { var t = typing(inTpl); setTimeout(function () { if (t.parentElement) t.parentElement.removeChild(t); }, 1400); }],
+      [1600, function () { message(inTpl, "وهل أقدر أربط رقمين لفرعين مختلفين؟", "سارة المعمري", "الآن"); }],
       [1200, function () { handoff("تحويل تلقائي — سؤال خارج قاعدة المعرفة. حُوّلت المحادثة إلى ريم · المبيعات مع ملخّص."); }],
       [1300, function () { arrival("متجر لمسة", "كم سعر الباقة الجديدة؟", "مت"); }],
       [3400, clear],
