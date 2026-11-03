@@ -16,4 +16,6 @@
 :HL["/_next/static/media/thmanyahserifdisplay_Light-s.p.2n9pxsmsderq1.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/thmanyahserifdisplay_Medium-s.p.37-bee8ms4atz.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/thmanyahserifdisplay_Regular-s.p.2g1u361r8-amp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/partners/meta-lockup.png","image"]
+:HL["/partners/meta-lockup-white.png","image"]
 0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"(ar)","param":null,"prefetchHints":4144,"slots":{"children":{"name":"contact","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"qhub"}
