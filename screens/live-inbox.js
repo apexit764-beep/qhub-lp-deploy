@@ -94,6 +94,48 @@
       return push(g);
     }
 
+    /**
+     * رسالة الموظف: لا قالب لها في اللقطة، فتُبنى من رسالة المساعد (الجهة
+     * نفسها) بفقاعة زرقاء كما في اللوحة (bg-primary/15)، وصورة رمزية بالأحرف
+     * مأخوذة من رسالة العميل. الألوان سطرية لأن ملف الأنماط لا يحمل أصنافها.
+     */
+    var dark = document.documentElement.classList.contains("dark");
+    function asAgent(g, initials) {
+      var bubble = g.querySelector("div[class*='rounded-2xl']");
+      if (bubble) {
+        bubble.style.background = dark ? "rgba(37,99,235,.20)" : "rgba(37,99,235,.15)";
+        bubble.style.borderColor = dark ? "rgba(37,99,235,.30)" : "rgba(37,99,235,.20)";
+      }
+      var slot = g.querySelector(".flex-shrink-0.pt-1");
+      var face = inTpl.querySelector(".flex-shrink-0.pt-1");
+      if (slot && face) {
+        slot.innerHTML = face.innerHTML;
+        var circle = slot.querySelector("div[class*='rounded-full']");
+        if (circle) {
+          circle.textContent = initials;
+          circle.style.background = dark ? "rgba(37,99,235,.25)" : "rgba(37,99,235,.12)";
+          circle.style.color = dark ? "#93C5FD" : "#1D4ED8";
+        }
+      }
+      // أيقونة المساعد في سطر التوقيع لا تخصّ الموظف
+      Array.prototype.forEach.call(g.querySelectorAll("div[class*='text-[10px]'] svg"), function (s) {
+        s.parentElement.removeChild(s);
+      });
+      return g;
+    }
+
+    function agentTyping(initials) {
+      var w = typing(aiTpl);
+      asAgent(w.firstChild, initials);
+      return w;
+    }
+
+    function agentMessage(text, who, initials, when) {
+      var w = message(aiTpl, text, who, when);
+      asAgent(w.firstChild, initials);
+      return w;
+    }
+
     /** شارة التحويل — صفّ مستقلّ بلون تحذيري، بأنماط سطرية لا أصناف. */
     function handoff(text) {
       var el = document.createElement("div");
@@ -147,17 +189,21 @@
     }
 
     /*
-      المشهد: سؤال ← ردّ المساعد ← سؤال خارج المعرفة ← تحويل لموظف، وفي
-      أثنائه محادثتان جديدتان — فيُقرأ الصندوق مشغولاً لا ساكناً.
+      المشهد: عميلة الشركة (سارة) تسأل عن العروض ← يردّ المساعد ← سؤال عن
+      شروط الدفع خارج المعرفة ← تحويل لموظف فيردّ، وفي أثنائه محادثتان جديدتان —
+      فيُقرأ الصندوق مشغولاً لا ساكناً. المحادثة بين الشركة وعميلها، لا بين
+      Qhub والشركة.
     */
     var scene = [
       [1000, function () { var t = typing(aiTpl); setTimeout(function () { if (t.parentElement) t.parentElement.removeChild(t); }, 1500); }],
-      [1700, function () { message(aiTpl, "من «الحسابات والربط» اختر واتساب واضغط «ربط حساب جديد»، وتصلك رسائل الرقم هنا مباشرة.", "المساعد الذكي", "الآن"); }],
-      [1400, function () { arrival("خالد الحارثي", "متى يفتح المحل اليوم؟", "خا"); }],
+      [1700, function () { message(aiTpl, "أهلاً سارة! عروض هذا الشهر: خصم 5% على شقق الخوض عند الدفع الكامل، وأثاث مجاني في فيلا الموج، وتقسيط حتى 5 سنوات بدون فوائد 🏡", "المساعد الذكي", "الآن"); }],
+      [1400, function () { arrival("خالد الحارثي", "هل عرض فيلا الموج ما زال سارياً؟", "خا"); }],
       [1300, function () { var t = typing(inTpl); setTimeout(function () { if (t.parentElement) t.parentElement.removeChild(t); }, 1400); }],
-      [1600, function () { message(inTpl, "وهل أقدر أربط رقمين لفرعين مختلفين؟", "سارة المعمري", "الآن"); }],
-      [1200, function () { handoff("تحويل تلقائي — سؤال خارج قاعدة المعرفة. حُوّلت المحادثة إلى ريم · المبيعات مع ملخّص."); }],
-      [1300, function () { arrival("متجر لمسة", "كم سعر الباقة الجديدة؟", "مت"); }],
+      [1600, function () { message(inTpl, "وإذا دفعت المقدّم على دفعتين، هل يبقى الخصم سارياً؟", "سارة المعمري", "الآن"); }],
+      [1200, function () { handoff("تحويل تلقائي — سؤال عن شروط الدفع خارج قاعدة المعرفة. حُوّلت المحادثة إلى ريم · المبيعات مع ملخّص."); }],
+      [1300, function () { arrival("سلمى البلوشية", "أريد معرفة أسعار الأراضي في بركاء", "سل"); }],
+      [1000, function () { var t = agentTyping("ري"); setTimeout(function () { if (t.parentElement) t.parentElement.removeChild(t); }, 1600); }],
+      [1800, function () { agentMessage("أهلاً سارة، معك ريم من المبيعات 👋 نعم، يبقى الخصم سارياً مع الدفع على دفعتين بشرط إتمام الدفعة الثانية خلال 30 يوماً. هل أرسل لك تفاصيل العرض؟", "ريم · المبيعات", "ري", "الآن"); }],
       [3400, clear],
     ];
 
