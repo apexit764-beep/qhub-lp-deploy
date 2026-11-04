@@ -3,7 +3,7 @@
 3:I[3265,["/_next/static/chunks/3i1x8pli8fzx1.js","/_next/static/chunks/1lici3t6ughnz.js","/_next/static/chunks/34-8jjj228zep.js"],"Navbar"]
 4:I[39756,["/_next/static/chunks/3fntmmi971322.js"],"default"]
 5:I[37457,["/_next/static/chunks/3fntmmi971322.js"],"default"]
-6:I[22016,["/_next/static/chunks/3i1x8pli8fzx1.js","/_next/static/chunks/1lici3t6ughnz.js","/_next/static/chunks/34-8jjj228zep.js","/_next/static/chunks/3nk05gn-btrd5.js","/_next/static/chunks/0cei0bqv2-cll.js"],""]
+6:I[22016,["/_next/static/chunks/3i1x8pli8fzx1.js","/_next/static/chunks/1lici3t6ughnz.js","/_next/static/chunks/34-8jjj228zep.js","/_next/static/chunks/3nk05gn-btrd5.js","/_next/static/chunks/1_9s-_pfa0ntr.js"],""]
 :HL["/_next/static/chunks/3qn7u0t_hybn0.css","style"]
 :HL["/_next/static/chunks/14ei8pvwd7-1h.css","style"]
 f:X
